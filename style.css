@@ -1,0 +1,303 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Quicksand', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(145deg, #2b1a4a 0%, #1d2b64 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+}
+
+.app-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    min-height: 650px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 48px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 0 2px rgba(255, 215, 245, 0.3);
+    overflow: hidden;
+    border: 1px solid rgba(255, 220, 240, 0.3);
+}
+
+/* Màn hình khoá */
+.lock-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #5f2b7c, #2b4f8c);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s;
+    z-index: 10;
+    background-image: radial-gradient(circle at 20% 30%, rgba(255, 200, 240, 0.2) 0%, transparent 40%);
+}
+
+.lock-screen.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lock-card {
+    background: rgba(255, 245, 250, 0.2);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 40px;
+    padding: 32px 24px;
+    width: 100%;
+    border: 1px solid rgba(255, 235, 250, 0.5);
+    box-shadow: 0 25px 50px -8px rgba(0, 0, 0, 0.4);
+}
+
+.anime-avatar {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.anime-avatar img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #ffd9f0;
+    box-shadow: 0 10px 20px #ffb6e0;
+    background: #ffe6f5;
+}
+
+.time-display {
+    font-size: 3.2rem;
+    font-weight: 700;
+    color: #fff9ee;
+    text-shadow: 0 3px 10px #ffa0d0;
+    letter-spacing: 4px;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.password-hint {
+    font-size: 1.1rem;
+    color: #fbe4ff;
+    text-align: center;
+    margin-bottom: 28px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 10px 16px;
+    border-radius: 60px;
+    backdrop-filter: blur(4px);
+}
+
+.password-hint span {
+    font-weight: 700;
+    background: #fff0c8;
+    color: #3f1d5c;
+    padding: 4px 12px;
+    border-radius: 40px;
+    margin-left: 8px;
+}
+
+.input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.input-group input {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(255, 230, 250, 0.8);
+    border-radius: 36px;
+    padding: 14px 18px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #2d0f3a;
+    text-align: center;
+    letter-spacing: 6px;
+    outline: none;
+    backdrop-filter: blur(10px);
+    transition: all 0.2s;
+}
+
+.input-group input:focus {
+    border-color: #ffb0e0;
+    background: rgba(255, 240, 250, 0.7);
+    box-shadow: 0 0 0 4px rgba(255, 160, 210, 0.5);
+}
+
+.input-group button {
+    background: #ffb3d9;
+    border: none;
+    border-radius: 36px;
+    padding: 0 24px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #3f1d5c;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+    border: 2px solid #ffe2f0;
+}
+
+.input-group button:hover {
+    background: #ffa0d0;
+    transform: scale(1.02);
+    box-shadow: 0 5px 15px #ff80c0;
+}
+
+.error-message {
+    min-height: 24px;
+    color: #ffd0b0;
+    font-weight: 600;
+    text-align: center;
+    text-shadow: 0 0 6px #ff0040;
+}
+
+.anime-decoration {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    height: 60px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="%23ffc1e0"></path></svg>') repeat-x bottom;
+    background-size: 200px;
+    pointer-events: none;
+}
+
+/* Màn hình chính */
+.main-screen {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    color: #fff6f0;
+    padding: 32px 20px;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s;
+    background: radial-gradient(circle at 10% 30%, #a973c9, #3d2b68);
+}
+
+.main-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+    display: none;
+}
+
+header h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 0 #ba7fd0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.welcome-text {
+    font-size: 1.4rem;
+    margin: 20px 0 30px;
+    background: rgba(255, 215, 240, 0.3);
+    padding: 16px;
+    border-radius: 36px;
+    text-align: center;
+}
+
+.features {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 40px;
+}
+
+.feature-card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(4px);
+    padding: 16px 12px;
+    border-radius: 28px;
+    width: 120px;
+    text-align: center;
+    border: 1px solid rgba(255, 200, 240, 0.6);
+}
+
+.feature-card i {
+    font-size: 2rem;
+    color: #ffd0f0;
+    margin-bottom: 8px;
+}
+
+.action-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+}
+
+.btn-primary, .btn-secondary, .btn-accent {
+    border: none;
+    padding: 14px 22px;
+    border-radius: 60px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 2px solid transparent;
+    min-width: 140px;
+    justify-content: center;
+}
+
+.btn-primary {
+    background: #ffb8de;
+    color: #2e1a47;
+    box-shadow: 0 8px 0 #b15d91;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 11px 0 #b15d91;
+}
+
+.btn-secondary {
+    background: #b8a0cf;
+    color: #1f1738;
+    box-shadow: 0 5px 0 #6f5191;
+}
+
+.btn-secondary:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    filter: grayscale(0.4);
+}
+
+.btn-accent {
+    background: #fed0bb;
+    color: #5b2c3f;
+    box-shadow: 0 5px 0 #c97373;
+}
+
+.btn-accent:hover:not(:disabled) {
+    background: #ffbbaa;
+    transform: scale(1.02);
+}
+
+footer {
+    margin-top: auto;
+    text-align: center;
+    color: #ffd9f0;
+    font-size: 1rem;
+    padding-top: 20px;
+}

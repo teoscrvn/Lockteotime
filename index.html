@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Lock · Time Password</title>
+    <!-- Font & Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- CSS chính -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Màn hình khoá (ẩn / hiện qua class 'active') -->
+        <div id="lockScreen" class="lock-screen">
+            <div class="lock-card">
+                <div class="anime-avatar">
+                    <img src="https://i.pinimg.com/originals/73/8e/7b/738e7b7e9a9e9b3c3b0f0c0d0e0f0a0b.jpg" 
+                         alt="anime girl" 
+                         onerror="this.src='https://via.placeholder.com/150x150?text=🌸'">
+                </div>
+                <div class="time-display" id="currentTime">--:--</div>
+                <div class="password-hint">Mật khẩu là <span id="passwordHint">----</span></div>
+                <div class="input-group">
+                    <input type="text" id="lockPassword" inputmode="numeric" maxlength="4" placeholder="Nhập mã số" autocomplete="off">
+                    <button id="unlockBtn"><i class="fas fa-lock-open"></i> Mở</button>
+                </div>
+                <div id="lockError" class="error-message"></div>
+            </div>
+            <div class="anime-decoration"></div>
+        </div>
+
+        <!-- Màn hình chính (hiện khi đã mở khoá) -->
+        <div id="mainScreen" class="main-screen">
+            <header>
+                <h1><i class="fas fa-paw"></i> Anime Space</h1>
+            </header>
+            <main>
+                <p class="welcome-text">Chào bạn! <i class="fas fa-smile-wink"></i></p>
+                <div class="features">
+                    <div class="feature-card">
+                        <i class="fas fa-clock"></i>
+                        <span>Khoá thời gian</span>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Bảo mật</span>
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button id="enableLockBtn" class="btn-primary"><i class="fas fa-lock"></i> Bật khoá</button>
+                    <button id="disableLockBtn" class="btn-secondary" disabled><i class="fas fa-unlock-alt"></i> Tắt khoá</button>
+                    <button id="lockNowBtn" class="btn-accent" disabled><i class="fas fa-lock"></i> Khoá ngay</button>
+                </div>
+            </main>
+            <footer>
+                <p>🌸 luôn dễ thương</p>
+            </footer>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
